@@ -5,17 +5,15 @@ import { Home, Auth, Create, Save } from "./pages";
 
 const App = () => {
   return (
-    <div className="text-[20px]">
+    <div>
       <Router>
         <Navbar />
-        <div className="flex justify-center">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/save" element={<Save />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/save" element={<Save />} />
+        </Routes>
       </Router>
     </div>
   );
