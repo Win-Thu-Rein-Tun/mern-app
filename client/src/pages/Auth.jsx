@@ -145,7 +145,7 @@ const Form = ({
         </div>
         <button
           type="submit"
-          className="bg-second hover:bg-teal-400 text-white font-bold py-2 px-4 rounded mt-4 justify-end flex"
+          className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded mt-4 justify-end flex"
         >
           {label}
         </button>
