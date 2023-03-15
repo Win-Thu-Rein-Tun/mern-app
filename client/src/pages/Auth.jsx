@@ -1,7 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   return (
@@ -10,7 +13,18 @@ const Auth = () => {
         <Login />
         <Register />
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };
@@ -19,6 +33,27 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [cookies,setCookies] = useCookies(["acess_token"]);
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3000/auth/login", {
+        username,
+        password,
+      });
+
+      setCookies("acess_token", response.data.token);
+      window.localStorage.setItem("userID", response.data.userID);
+      // window.location.pathname = "/"
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <Form
       username={username}
@@ -26,6 +61,7 @@ const Login = () => {
       password={password}
       setPassword={setPassword}
       label="Login"
+      onSubmit={onSubmit}
     />
   );
 };
@@ -37,11 +73,21 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/auth/register", {
+      const response = await axios.post("http://localhost:3000/auth/register", {
         username,
         password,
       });
-      toast.success("Registration Complete!");
+
+      toast.success(response.data.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } catch (err) {
       console.error(err);
     }
