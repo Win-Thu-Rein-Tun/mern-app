@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Auth = () => {
   return (
     <div className="sm:px-16 px-6 sm:py-16 py-6 flex justify-center text-first bg-secondary lg:h-screen h-max">
-      <div className="xl:max-w-[1280px] w-full flex lg:flex-row flex-col sm:px-16 px-6 sm:py-16 py-6 gap-10">
+      <div className="xl:max-w-[1280px] w-full flex xl:flex-row flex-col sm:px-16 px-6 sm:py-16 py-6 gap-10">
         <Login />
         <Register />
       </div>

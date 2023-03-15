@@ -29,8 +29,8 @@ const Create = () => {
   };
 
   return (
-    <div className="bg-secondary text-first flex justify-center sm:py-32 py-6 px-6">
-      <div className="lg:max-w-[1280px] bg-primary sm:py-16 py-6 sm:px-16 px-6 rounded-xl">
+    <div className="bg-secondary text-first flex justify-center sm:py-16 py-6 px-6">
+      <div className="xl:max-w-[1280px] sm:w-fit w-full  bg-primary sm:py-16 py-6 sm:px-16 px-6 rounded-xl">
         <form className="flex flex-col gap-10">
           <h2 className="font-semibold sm:text-[60px] text-[40px]">
             Create Recipes
