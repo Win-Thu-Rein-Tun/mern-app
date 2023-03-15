@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Auth = () => {
   return (
@@ -9,6 +10,7 @@ const Auth = () => {
         <Login />
         <Register />
       </div>
+      <ToastContainer />
     </div>
   );
 };
@@ -39,7 +41,7 @@ const Register = () => {
         username,
         password,
       });
-      alert("Registration Complete!");
+      toast.success("Registration Complete!");
     } catch (err) {
       console.error(err);
     }
