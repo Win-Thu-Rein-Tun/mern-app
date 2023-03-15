@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   return (
-    <div className="sm:px-16 px-6 sm:py-16 py-6 flex justify-center text-first bg-secondary">
-      <div className="xl:max-w-[1280px] w-full flex md:flex-row flex-col sm:px-16 px-6 sm:py-16 py-6 gap-10">
+    <div className="sm:px-16 px-6 sm:py-16 py-6 flex justify-center text-first bg-secondary lg:h-screen h-max">
+      <div className="xl:max-w-[1280px] w-full flex lg:flex-row flex-col sm:px-16 px-6 sm:py-16 py-6 gap-10">
         <Login />
         <Register />
       </div>
@@ -114,7 +114,7 @@ const Form = ({
   onSubmit,
 }) => {
   return (
-    <div className="flex-1 bg-primary sm:px-20 px-6 py-20 rounded-[20px] h-max">
+    <div className="flex-1 bg-primary md:px-20 px-6 py-20 rounded-[20px] h-max">
       <form onSubmit={onSubmit}>
         <h2 className="sm:text-[60px] text-[30px] font-semibold">{label}</h2>
         <div className="mt-5">
