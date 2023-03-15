@@ -62,7 +62,8 @@ const Create = () => {
                 type="text"
                 name="ingredients"
                 value={ingredient}
-                onChange={handleIngredientChange}
+                onChange={(e) => handleIngredientChange(e,index)}
+                className="bg-secondary rounded-lg py-4 px-4 outline-none border-none mt-4"
               />
             ))}
           </div>
