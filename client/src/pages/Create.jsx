@@ -1,16 +1,20 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
+import useGetUserID from "../hooks/useGetUserID";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Create = () => {
+  const userID = useGetUserID();
+
   const [recipes, setRecipes] = useState({
     name: "",
     ingredients: [],
     instructions: "",
     imgUrl: "",
     cookingTime: 0,
-    userOwner: 0,
+    userOwner: userID,
   });
 
   const handleChange = (e) => {
@@ -30,9 +34,10 @@ const Create = () => {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/recipes", recipes)
+      await axios.post("http://localhost:3000/recipes", recipes);
+      // alert("Recipes Create Successfully");
       toast.success("Recipes Create Successfully", {
         position: "top-center",
         autoClose: 5000,
@@ -42,12 +47,11 @@ const Create = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-      })
-
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="bg-secondary text-first flex justify-center sm:py-16 py-6 px-6">
@@ -83,7 +87,7 @@ const Create = () => {
                 type="text"
                 name="ingredients"
                 value={ingredient}
-                onChange={(e) => handleIngredientChange(e,index)}
+                onChange={(e) => handleIngredientChange(e, index)}
                 className="bg-secondary rounded-lg py-4 px-4 outline-none border-none mt-4"
               />
             ))}
@@ -120,12 +124,12 @@ const Create = () => {
             />
           </div>
           <button
-              type="submit"
-              className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded mt-4"
-            >
-              {" "}
-              Create Recipes
-            </button>
+            type="submit"
+            className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            {" "}
+            Create Recipes
+          </button>
         </form>
       </div>
       <ToastContainer

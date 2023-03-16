@@ -4,11 +4,11 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [cookies, setCookies] = useCookies(["acess_token"]);
+  const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
 
   const logout = () => {
-    setCookies("acess_token", "");
+    setCookies("access_token", "");
     window.localStorage.removeItem("userID");
     navigate("/auth");
   };
@@ -17,7 +17,7 @@ const Navbar = () => {
       <Link to="/">Home</Link>
       <Link to="/create">Create</Link>
       <Link to="/save">Save</Link>
-      {!cookies.acess_token ? (
+      {!cookies.access_token ? (
         <Link to="/auth">Login</Link>
       ) : (
         <button onClick={logout}>Logout</button>

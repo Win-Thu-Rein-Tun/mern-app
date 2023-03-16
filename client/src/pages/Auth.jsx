@@ -33,7 +33,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [cookies,setCookies] = useCookies(["acess_token"]);
+  const [cookies, setCookies] = useCookies(["access_token"]);
 
   const navigate = useNavigate();
 
@@ -44,17 +44,7 @@ const Login = () => {
         username,
         password,
       });
-      toast.error(response.data.message, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      })
-      setCookies("acess_token", response.data.token);
+      setCookies("access_token", response.data.token);
       window.localStorage.setItem("userID", response.data.userID);
       // window.location.pathname = "/"
       navigate("/");
@@ -97,6 +87,9 @@ const Register = () => {
         progress: undefined,
         theme: "dark",
       });
+
+      setUsername("")
+      setPassword("")
     } catch (err) {
       console.error(err);
     }
