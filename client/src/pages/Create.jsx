@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import useGetUserID from "../hooks/useGetUserID";
+import { useGetUserID } from "../hooks/useGetUserID";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Create = () => {
   const userID = useGetUserID();
+  const navigation = useNavigate();
 
   const [recipes, setRecipes] = useState({
     name: "",
@@ -48,6 +50,7 @@ const Create = () => {
         progress: undefined,
         theme: "dark",
       });
+      navigation("/");
     } catch (error) {
       console.log(error);
     }
