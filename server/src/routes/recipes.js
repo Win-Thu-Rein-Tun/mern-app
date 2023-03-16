@@ -40,9 +40,9 @@ router.get("/saveRecipes", async (req, res) => {
   try {
     const user = await UserModel.findById(req.body.userID);
     const saveRecipes = await RecipesModel.find({
-      _id: { $id: user.saveRecipes },
+      _id: { $in: user.saveRecipes },
     });
-    res.json({saveRecipes})
+    res.json({ saveRecipes });
   } catch (err) {
     res.json(err);
   }
