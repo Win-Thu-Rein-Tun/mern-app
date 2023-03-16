@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Create = () => {
   const [recipes, setRecipes] = useState({
@@ -21,17 +23,36 @@ const Create = () => {
     const ingredients = recipes.ingredients;
     ingredients[index] = value;
     setRecipes({ ...recipes, ingredients });
-    console.log(recipes);
   };
 
   const add = () => {
     setRecipes({ ...recipes, ingredients: [...recipes.ingredients, ""] });
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post("http://localhost:3000/recipes", recipes)
+      toast.success("Recipes Create Successfully", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="bg-secondary text-first flex justify-center sm:py-16 py-6 px-6">
       <div className="xl:max-w-[1280px] sm:w-fit w-full  bg-primary sm:py-16 py-6 sm:px-16 px-6 rounded-xl">
-        <form className="flex flex-col gap-10">
+        <form onSubmit={onSubmit} className="flex flex-col gap-10">
           <h2 className="font-semibold sm:text-[60px] text-[40px]">
             Create Recipes
           </h2>
@@ -92,14 +113,33 @@ const Create = () => {
           <div className="flex flex-col">
             <label htmlFor="">Cooking Times (minutes) :</label>
             <input
-              type="text"
+              type="number"
               name="cookingTime"
               onChange={handleChange}
               className="bg-secondary rounded-lg py-4 px-4 outline-none border-none mt-4"
             />
           </div>
+          <button
+              type="submit"
+              className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded mt-4"
+            >
+              {" "}
+              Create Recipes
+            </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };
