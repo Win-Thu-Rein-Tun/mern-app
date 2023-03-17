@@ -29,7 +29,7 @@ const Home = () => {
               <h2>{recipe.name}</h2>
               <p>{recipe.ingredients}</p>
               <p>{recipe.instructions}</p>
-              <img src={recipe.imgUrl} alt="recipe.name" />
+              <img src={recipe.imgUrl} alt="recipe.name" className="object-fit"/>
               <p>{recipe.cookingTime}</p>
             </li>
           ))}
