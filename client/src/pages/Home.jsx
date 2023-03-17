@@ -20,15 +20,19 @@ const Home = () => {
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
-      <div className="sm:py-16 py-6 sm:px-16 px-6 bg-primary text-white overflow-auto">
-        <ul className="py-6 ">
+      <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
+        <ul className="pb-16 ">
           {recipes.map((recipe) => (
-            <li key={recipe._id}>
+            <li key={recipe._id} className="flex flex-col gap-8 bg-secondary py-6 px-6 rounded-lg my-10">
               <h2>{recipe.name}</h2>
               <p>{recipe.ingredients}</p>
               <p>{recipe.instructions}</p>
-              <img src={recipe.imgUrl} alt="recipe.name" className="object-fit"/>
-              <p>{recipe.cookingTime}</p>
+              <img
+                src={recipe.imgUrl}
+                alt="recipe.name"
+                className="object-fit rounded-xl"
+              />
+              <p>Cooking Time: {recipe.cookingTime} (minutes)</p>
             </li>
           ))}
         </ul>
