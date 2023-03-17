@@ -23,9 +23,14 @@ const Home = () => {
       <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
         <ul className="pb-16 ">
           {recipes.map((recipe) => (
-            <li key={recipe._id} className="flex flex-col gap-8 bg-secondary py-6 px-6 rounded-lg my-10">
-              <h2>{recipe.name}</h2>
-              <p>{recipe.ingredients}</p>
+            <li
+              key={recipe._id}
+              className="flex flex-col gap-4 bg-secondary py-6 px-6 rounded-lg my-10"
+            >
+              <h2 className="font-bold text-[24px] text-first">
+                {recipe.name}
+              </h2>
+              <p className="font-semibold">{recipe.ingredients}</p>
               <p>{recipe.instructions}</p>
               <img
                 src={recipe.imgUrl}
