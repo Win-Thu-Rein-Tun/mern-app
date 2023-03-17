@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useGetUserID } from "../hooks/useGetUserID";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
+  const userID = useGetUserID();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -17,6 +19,17 @@ const Home = () => {
 
     fetchRecipes();
   }, []);
+
+  const saveRecipes = async (recipeID) => {
+    try {
+      const response = await axios.put("http://localhost:3000/recipes", {
+        recipeID,
+        userID,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
@@ -32,7 +45,7 @@ const Home = () => {
                   {recipe.name}
                 </h1>
                 <button
-                  type="submit"
+                  onClick={() => saveRecipes(recipe._id)}
                   className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex"
                 >
                   Save
