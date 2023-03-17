@@ -27,9 +27,17 @@ const Home = () => {
               key={recipe._id}
               className="flex flex-col gap-4 bg-secondary py-6 px-6 rounded-lg my-10"
             >
-              <h2 className="font-bold text-[24px] text-first">
-                {recipe.name}
-              </h2>
+              <div className="flex justify-between items-center">
+                <h1 className="font-bold text-[24px] text-first">
+                  {recipe.name}
+                </h1>
+                <button
+                  type="submit"
+                  className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex"
+                >
+                  Save
+                </button>
+              </div>
               <h2 className="font-semibold"> Ingredients :</h2>
               <ul className="px-8 list-disc">
                 {recipe.ingredients.map((ingredient, index) => (
