@@ -88,8 +88,8 @@ const Register = () => {
         theme: "dark",
       });
 
-      setUsername("")
-      setPassword("")
+      setUsername("");
+      setPassword("");
     } catch (err) {
       console.error(err);
     }
