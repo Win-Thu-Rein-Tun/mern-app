@@ -23,7 +23,13 @@ const Home = () => {
   return (
     <div className="bg-secondary h-screen flex justify-center">
       <div className="sm:py-16 py-6 sm:px-16 px-6">
-        
+        <ul>
+          {recipes.map((recipe) => (
+            <li key={recipe._id}>
+              <h2>{recipe.name}</h2>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
