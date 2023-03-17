@@ -32,8 +32,8 @@ const Home = () => {
               </h2>
               <h2 className="font-semibold"> Ingredients :</h2>
               <ul className="px-8 list-disc">
-                {recipe.ingredients.map((ingredient) => (
-                  <li>{ingredient}</li>
+                {recipe.ingredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
                 ))}
               </ul>
 
