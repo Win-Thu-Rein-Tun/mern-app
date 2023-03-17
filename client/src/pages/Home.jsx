@@ -30,7 +30,7 @@ const Home = () => {
               <h2 className="font-bold text-[24px] text-first">
                 {recipe.name}
               </h2>
-              <p className="font-semibold">{recipe.ingredients}</p>
+              <p>{recipe.ingredients}</p>
               <p>{recipe.instructions}</p>
               <img
                 src={recipe.imgUrl}
