@@ -30,7 +30,13 @@ const Home = () => {
               <h2 className="font-bold text-[24px] text-first">
                 {recipe.name}
               </h2>
-              <p>{recipe.ingredients}</p>
+              <h2 className="font-semibold"> Ingredients :</h2>
+              <ul className="px-8 list-disc">
+                {recipe.ingredients.map((ingredient) => (
+                  <li>{ingredient}</li>
+                ))}
+              </ul>
+
               <p>{recipe.instructions}</p>
               <img
                 src={recipe.imgUrl}

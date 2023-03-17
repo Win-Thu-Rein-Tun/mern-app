@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const response = await RecipesModel.find({});
+    const response = await RecipesModel.find({}).sort({_id: -1});
     res.json(response);
   } catch (err) {
     res.json(err);
