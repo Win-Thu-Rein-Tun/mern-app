@@ -26,6 +26,7 @@ const Home = () => {
         recipeID,
         userID,
       });
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
