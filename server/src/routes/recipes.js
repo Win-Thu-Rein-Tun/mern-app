@@ -61,9 +61,9 @@ router.delete("/deleteRecipes", async (req, res) => {
   try {
     const user = await UserModel.findById(req.body.userID);
     const recipe = await UserModel.findById(req.body.recipeID);
-    const delSaveRecipe = await UserModel.delete(
-      user.saveRecipes.includes(recipe)
-    );
+    // const delSaveRecipe = await UserModel.delete(
+    //   user.saveRecipes.includes(recipe)
+    // );
   } catch (err) {
     res.json(err);
   }
