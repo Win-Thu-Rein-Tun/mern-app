@@ -40,7 +40,7 @@ const Home = () => {
         recipeID,
         userID,
       });
-      console.log(response);
+      setSavedRecipes(response.data.saveRecipes)
     } catch (error) {
       console.log(error);
     }
