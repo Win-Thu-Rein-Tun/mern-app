@@ -22,7 +22,7 @@ const Home = () => {
     const fetchSaveRecipes = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/recipes/saveRecipes/ids"
+          `http://localhost:3000/recipes/saveRecipes/ids/${userID}`
         );
         // setSaveRecipes(response.data);
         console.log(response.data);
