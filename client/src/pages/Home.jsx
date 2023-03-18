@@ -46,6 +46,8 @@ const Home = () => {
     }
   };
 
+  const isSavedRecipes = (id) => savedRecipes.includes(id);
+
   return (
     <div className="bg-secondary h-screen flex justify-center">
       <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
@@ -60,7 +62,9 @@ const Home = () => {
                   {recipe.name}
                 </h1>
                 <button
+                  type="button"
                   onClick={() => saveRecipes(recipe._id)}
+                  disabled={isSavedRecipes(recipe._id)}
                   className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex"
                 >
                   Save
