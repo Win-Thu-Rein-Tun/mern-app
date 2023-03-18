@@ -62,7 +62,7 @@ const Create = () => {
     <div className="bg-secondary text-first flex justify-center sm:py-16 py-6 px-6">
       {!cookies.access_token ? (
         <div className="flex h-screen items-center sm:text-[40px] text-[20px] text-second">
-          You need to login.
+          You need to login!
         </div>
       ) : (
         <div className="xl:max-w-[1280px] sm:w-fit w-full  bg-primary sm:py-16 py-6 sm:px-16 px-6 rounded-xl">

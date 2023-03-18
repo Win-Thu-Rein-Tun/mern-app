@@ -29,7 +29,7 @@ const Save = () => {
     <div className="bg-secondary h-screen flex justify-center">
       {!cookies.access_token ? (
         <div className="flex items-center sm:text-[40px] text-[20px] text-second">
-          You need to login.
+          You need to login!
         </div>
       ) : savedRecipes.length === 0 ? (
         <div className="flex items-center sm:text-[40px] text-[20px] text-second">
