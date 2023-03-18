@@ -57,10 +57,22 @@ const Login = () => {
         username,
         password,
       });
-      setCookies("access_token", response.data.token);
-      window.localStorage.setItem("userID", response.data.userID);
-      // window.location.pathname = "/"
-      navigate("/");
+      toast.warn(response.data.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      if (response.data.token && response.data.userID) {
+        setCookies("access_token", response.data.token);
+        window.localStorage.setItem("userID", response.data.userID);
+        // window.location.pathname = "/"
+        navigate("/");
+      }
     } catch (err) {
       console.error(err);
     }
@@ -84,13 +96,35 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!username || !password) {
+      toast.error("Please enter a username and password completely", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:3000/auth/register", {
         username,
         password,
       });
-
-      toast.success(response.data.message, {
+      toast.warn(response.data.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      toast.success(response.data.success, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -134,8 +168,7 @@ const Form = ({
         <h2 className="sm:text-[60px] text-[30px] font-semibold">{label}</h2>
         <div className="mt-5">
           <label htmlFor="username" className="mb-4 block">
-            {" "}
-            Username:{" "}
+            Username:
           </label>
           <input
             type="text"
@@ -147,8 +180,7 @@ const Form = ({
         </div>
         <div className="mt-5">
           <label htmlFor="username" className="mb-4 block">
-            {" "}
-            Password:{" "}
+            Password:
           </label>
           <input
             type="password"

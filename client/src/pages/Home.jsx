@@ -95,7 +95,7 @@ const Home = () => {
               <p>{recipe.instructions}</p>
               <img
                 src={recipe.imgUrl}
-                alt="recipe.name"
+                alt={recipe.name}
                 className="object-fit rounded-xl"
               />
               <p>Cooking Time: {recipe.cookingTime} (minutes)</p>
