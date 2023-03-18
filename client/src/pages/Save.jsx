@@ -25,8 +25,8 @@ const Save = () => {
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
-      {!savedRecipes ? (
-        <div></div>
+      {savedRecipes.length === 0 ? (
+        <div className="flex items-center sm:text-[40px] text-[20px] text-second"> No saved recipes found.</div>
       ) : (
         <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
           <ul className="pb-16 ">
