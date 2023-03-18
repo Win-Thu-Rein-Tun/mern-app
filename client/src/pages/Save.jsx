@@ -2,9 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
+import { useCookies } from "react-cookie";
 
 const Save = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
+  const [cookies, setCookies] = useCookies(["access_token"]);
 
   const userID = useGetUserID();
 
@@ -20,13 +22,19 @@ const Save = () => {
       }
     };
 
-    fetchSaveRecipes();
+    if (cookies.access_token) fetchSaveRecipes();
   }, []);
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
-      {savedRecipes.length === 0 ? (
-        <div className="flex items-center sm:text-[40px] text-[20px] text-second"> No saved recipes found.</div>
+      {!cookies.access_token ? (
+        <div className="flex items-center sm:text-[40px] text-[20px] text-second">
+          You need to login.
+        </div>
+      ) : savedRecipes.length === 0 ? (
+        <div className="flex items-center sm:text-[40px] text-[20px] text-second">
+          No saved recipes found.
+        </div>
       ) : (
         <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
           <ul className="pb-16 ">
