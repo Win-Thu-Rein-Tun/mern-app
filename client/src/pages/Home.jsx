@@ -57,7 +57,6 @@ const Home = () => {
               key={recipe._id}
               className="flex flex-col gap-4 bg-secondary py-6 px-6 rounded-lg my-10"
             >
-              {isSavedRecipes(recipe._id) && <h1>already saved</h1>}
               <div className="flex justify-between items-center">
                 <h1 className="font-bold text-[24px] text-first">
                   {recipe.name}
@@ -66,7 +65,11 @@ const Home = () => {
                   type="button"
                   onClick={() => saveRecipes(recipe._id)}
                   disabled={isSavedRecipes(recipe._id)}
-                  className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex disabled"
+                  className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex ${
+                    isSavedRecipes(recipe._id)
+                      ? "disabled:opacity-50 cursor-not-allowed"
+                      : ""
+                  }`}
                 >
                   {isSavedRecipes(recipe._id) ? "Saved" : "Save"}
                 </button>
