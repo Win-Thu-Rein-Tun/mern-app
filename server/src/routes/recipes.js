@@ -50,6 +50,18 @@ router.get("/saveRecipes/:userID", async (req, res) => {
     const user = await UserModel.findById(req.params.userID);
     const saveRecipes = await RecipesModel.find({
       _id: { $in: user.saveRecipes },
+    }).sort({ _id: -1 });
+    res.json({ saveRecipes });
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+router.delete("/saveRecipes/", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userID);
+    const saveRecipes = await RecipesModel.find({
+      _id: { $in: user.saveRecipes },
     });
     res.json({ saveRecipes });
   } catch (err) {

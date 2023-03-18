@@ -40,7 +40,9 @@ const Create = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/recipes", recipes);
+      await axios.post("http://localhost:3000/recipes", recipes, {
+        headers: { authorization: cookies.access_token },
+      });
       // alert("Recipes Create Successfully");
       toast.success("Recipes Create Successfully", {
         position: "top-center",
