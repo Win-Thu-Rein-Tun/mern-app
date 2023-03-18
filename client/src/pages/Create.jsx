@@ -3,8 +3,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
 
 const Create = () => {
@@ -43,17 +41,6 @@ const Create = () => {
       await axios.post("http://localhost:3000/recipes", recipes, {
         headers: { authorization: cookies.access_token },
       });
-      // alert("Recipes Create Successfully");
-      toast.success("Recipes Create Successfully", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
       navigation("/");
     } catch (error) {
       console.log(error);
@@ -90,7 +77,6 @@ const Create = () => {
                 type="button"
                 className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded mt-4"
               >
-                {" "}
                 Add Ingredients +
               </button>
               {recipes.ingredients.map((ingredient, index) => (
@@ -139,24 +125,11 @@ const Create = () => {
               type="submit"
               className="bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded mt-4"
             >
-              {" "}
               Create Recipes
             </button>
           </form>
         </div>
       )}
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
     </div>
   );
 };

@@ -57,8 +57,8 @@ const Home = () => {
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
-      <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide xl:w-4/12 lg:w-6/12 w-full">
-        <ul className="pb-">
+      <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
+        <ul className="pb-16 ">
           {recipes.map((recipe) => (
             <li
               key={recipe._id}

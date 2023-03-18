@@ -25,6 +25,20 @@ const Save = () => {
     if (cookies.access_token) fetchSaveRecipes();
   }, []);
 
+  const delSaveRecipes = async (recipeID) => {
+    try {
+      const response = await axios.delete(
+        "http://localhost:3000/recipes/deleteRecipes",
+        {
+          recipeID,
+          userID,
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-secondary h-screen flex justify-center">
       {!cookies.access_token ? (
@@ -47,24 +61,20 @@ const Save = () => {
                   <h1 className="font-bold text-[24px] text-first">
                     {recipe.name}
                   </h1>
-                  {!cookies.access_token ? (
-                    <div></div>
-                  ) : (
-                    <button
-                      type="button"
-                      // onClick={() => saveRecipes(recipe._id)}
-                      // disabled={isSavedRecipes(recipe._id)}
-                      className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex`}
-                    >
-                     {/* ${
+                  <button
+                    type="button"
+                    onClick={() => delSaveRecipes(recipe._id)}
+                    // disabled={isSavedRecipes(recipe._id)}
+                    className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex`}
+                  >
+                    {/* ${
                         isSavedRecipes(recipe._id)
                           ? "disabled:opacity-50 cursor-not-allowed"
                           : ""
                       } */}
-                      {/* {isSavedRecipes(recipe._id) ? "Saved" : "Save"} */}
-                      Delete
-                    </button>
-                  )}
+                    {/* {isSavedRecipes(recipe._id) ? "Saved" : "Save"} */}
+                    Delete
+                  </button>
                 </div>
                 <h2 className="font-semibold"> Ingredients :</h2>
                 <ul className="px-8 list-disc">
