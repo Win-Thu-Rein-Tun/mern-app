@@ -1,7 +1,7 @@
 import express from "express";
-import mongoose from "mongoose";
 import { RecipesModel } from "../models/Recipes.js";
 import { UserModel } from "../models/Users.js";
+import { verifyToken } from "./users.js";
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const recipe = new RecipesModel(req.body);
   try {
     const response = await recipe.save();
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {
+router.put("/", verifyToken, async (req, res) => {
   try {
     const recipe = await RecipesModel.findById(req.body.recipeID);
     const user = await UserModel.findById(req.body.userID);
@@ -36,14 +36,14 @@ router.put("/", async (req, res) => {
   }
 });
 
-router.get("/saveRecipes/ids/:userID", async (req, res) => {
+router.get("/saveRecipes/ids/:userID", verifyToken, async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.userID);
     res.json({ saveRecipes: user?.saveRecipes });
   } catch (err) {
     res.json(err);
   }
-})
+});
 
 router.get("/saveRecipes/:userID", async (req, res) => {
   try {
