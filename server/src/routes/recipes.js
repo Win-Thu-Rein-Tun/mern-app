@@ -1,7 +1,7 @@
 import express from "express";
 import { RecipesModel } from "../models/Recipes.js";
 import { UserModel } from "../models/Users.js";
-import { verifyToken } from "./users.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
