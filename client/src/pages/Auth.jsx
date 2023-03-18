@@ -39,6 +39,19 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!username || !password) {
+      toast.error("Please enter a valid username and password", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:3000/auth/login", {
         username,
