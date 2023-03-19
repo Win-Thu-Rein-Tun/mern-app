@@ -67,7 +67,7 @@ const Home = () => {
 
   const delRecipe = async (recipeID) => {
     try {
-      const response = await axios.put(
+      const response = await axios.delete(
         "http://localhost:3001/recipes/deleteRecipes",
         {
           recipeID,
@@ -84,7 +84,6 @@ const Home = () => {
         progress: undefined,
         theme: "dark",
       });
-      setSavedRecipes(response.data.saveRecipes);
     } catch (error) {
       console.log(error);
     }
