@@ -57,16 +57,50 @@ router.get("/saveRecipes/:userID", async (req, res) => {
   }
 });
 
-router.delete("/deleteRecipes", async (req, res) => {
+router.delete("/deleteRecipes", verifyToken, async (req, res) => {
   try {
     const user = await UserModel.findById(req.body.userID);
-    const recipe = await UserModel.findById(req.body.recipeID);
-    // const delSaveRecipe = await UserModel.delete(
-    //   user.saveRecipes.includes(recipe)
-    // );
+    // Remove the recipe from the user's saveRecipes array
+    user.saveRecipes = user.saveRecipes.filter(
+      (id) => id.toString() !== req.body.recipeID
+    );
+    await user.save();
+    res.json({ message: "Recipe deleted successfully." });
   } catch (err) {
     res.json(err);
   }
 });
+
+// // router.delete("/deleteRecipes", async (req, res) => {
+// //   try {
+// //     const user = await UserModel.findById(req.body.userID);
+// //     const recipe = await UserModel.find(
+// //       user.saveRecipes.includes(req.body.recipeID)
+// //     );
+// //     // const delSaveRecipe = await UserModel.delete(
+// //     //   user.saveRecipes.includes(recipe)
+// //     // );
+// //     const delSaveRecipe = await UserModel.updateOne(
+// //       { user },
+// //       { $pull: { saveRecipes: recipe } }
+// //     );
+// //   } catch (err) {
+// //     res.json(err);
+// //   }
+// // });
+
+// // router.delete("/deleteRecipes", async (req, res) => {
+// //   try {
+// //     // const user = await UserModel.findById(req.body.userID);
+// //     // const recipe = await UserModel.find({ _id: req.body.userID, saveRecipes: req.body.recipeID });
+// //     const delSaveRecipe = await UserModel.updateOne(
+// //       { _id: req.body.userID },
+// //       { $pull: { saveRecipes: req.body.recipeID } }
+// //     );
+// //     res.json(delSaveRecipe);
+// //   } catch (err) {
+// //     res.json(err);
+// //   }
+// // });
 
 export { router as recipesRouter };

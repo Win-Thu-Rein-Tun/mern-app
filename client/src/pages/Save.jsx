@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Save = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -30,14 +32,39 @@ const Save = () => {
       const response = await axios.delete(
         "http://localhost:3000/recipes/deleteRecipes",
         {
-          recipeID,
-          userID,
+          data: { recipeID, userID },
+          headers: { authorization: cookies.access_token },
         }
       );
+      toast.success(response.data.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      // Remove the deleted recipe from the savedRecipes state
+      setSavedRecipes(savedRecipes.filter((recipe) => recipe._id !== recipeID));
     } catch (error) {
       console.log(error);
     }
   };
+
+  // const delSaveRecipes = async (recipeID) => {
+  //   try {
+  //     const response = await axios.delete(
+  //       "http://localhost:3000/recipes/deleteRecipes",
+  //       {
+  //         data: { recipeID, userID },
+  //       }
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
@@ -67,6 +94,7 @@ const Save = () => {
                     // disabled={isSavedRecipes(recipe._id)}
                     className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex`}
                   >
+                    {console.log(recipe._id)}
                     {/* ${
                         isSavedRecipes(recipe._id)
                           ? "disabled:opacity-50 cursor-not-allowed"
@@ -95,6 +123,18 @@ const Save = () => {
           </ul>
         </div>
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };
