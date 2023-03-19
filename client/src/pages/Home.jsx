@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -47,6 +49,16 @@ const Home = () => {
         },
         { headers: { authorization: cookies.access_token } }
       );
+      toast.success(response.data.message, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       setSavedRecipes(response.data.saveRecipes);
     } catch (error) {
       console.log(error);
@@ -103,6 +115,18 @@ const Home = () => {
           ))}
         </ul>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

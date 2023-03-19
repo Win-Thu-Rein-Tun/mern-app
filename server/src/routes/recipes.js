@@ -30,7 +30,7 @@ router.put("/", verifyToken, async (req, res) => {
     const user = await UserModel.findById(req.body.userID);
     user.saveRecipes.push(recipe);
     await user.save();
-    res.json({ saveRecipes: user.saveRecipes });
+    res.json({ saveRecipes: user.saveRecipes, message: "Recipe saved successfully" });
   } catch (err) {
     res.json(err);
   }

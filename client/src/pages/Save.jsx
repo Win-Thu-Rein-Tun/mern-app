@@ -38,7 +38,7 @@ const Save = () => {
       );
       toast.success(response.data.message, {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -91,16 +91,8 @@ const Save = () => {
                   <button
                     type="button"
                     onClick={() => delSaveRecipes(recipe._id)}
-                    // disabled={isSavedRecipes(recipe._id)}
                     className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex`}
                   >
-                    {console.log(recipe._id)}
-                    {/* ${
-                        isSavedRecipes(recipe._id)
-                          ? "disabled:opacity-50 cursor-not-allowed"
-                          : ""
-                      } */}
-                    {/* {isSavedRecipes(recipe._id) ? "Saved" : "Save"} */}
                     Delete
                   </button>
                 </div>
@@ -125,7 +117,7 @@ const Save = () => {
       )}
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
