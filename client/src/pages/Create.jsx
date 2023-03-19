@@ -38,7 +38,7 @@ const Create = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/recipes", recipes, {
+      await axios.post("http://localhost:3001/recipes", recipes, {
         headers: { authorization: cookies.access_token },
       });
       navigation("/");

@@ -16,7 +16,7 @@ const Save = () => {
     const fetchSaveRecipes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/recipes/saveRecipes/${userID}`
+          `http://localhost:3001/recipes/saveRecipes/${userID}`
         );
         setSavedRecipes(response.data.saveRecipes);
       } catch (error) {
@@ -30,7 +30,7 @@ const Save = () => {
   const delSaveRecipes = async (recipeID) => {
     try {
       const response = await axios.delete(
-        "http://localhost:3000/recipes/deleteRecipes",
+        "http://localhost:3001/recipes/deleteRecipes",
         {
           data: { recipeID, userID },
           headers: { authorization: cookies.access_token },

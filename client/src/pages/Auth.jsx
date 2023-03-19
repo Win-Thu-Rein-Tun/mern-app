@@ -53,7 +53,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post("http://localhost:3001/auth/login", {
         username,
         password,
       });
@@ -110,7 +110,7 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/auth/register", {
+      const response = await axios.post("http://localhost:3001/auth/register", {
         username,
         password,
       });
