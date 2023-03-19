@@ -49,6 +49,7 @@ const Home = () => {
         },
         { headers: { authorization: cookies.access_token } }
       );
+      setSavedRecipes(response.data.saveRecipes);
       toast.success(response.data.message, {
         position: "top-center",
         autoClose: 1000,
@@ -59,7 +60,6 @@ const Home = () => {
         progress: undefined,
         theme: "dark",
       });
-      setSavedRecipes(response.data.saveRecipes);
     } catch (error) {
       console.log(error);
     }
