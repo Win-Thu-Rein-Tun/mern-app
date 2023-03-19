@@ -65,6 +65,31 @@ const Home = () => {
     }
   };
 
+  const delRecipe = async (recipeID) => {
+    try {
+      const response = await axios.put(
+        "http://localhost:3001/recipes",
+        {
+          recipeID,
+        },
+        { headers: { authorization: cookies.access_token } }
+      );
+      toast.success(response.data.message, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      setSavedRecipes(response.data.saveRecipes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const isSavedRecipes = (id) => savedRecipes.includes(id);
 
   return (
@@ -111,6 +136,13 @@ const Home = () => {
                 className="rounded-xl"
               />
               <p>Cooking Time: {recipe.cookingTime} (minutes)</p>
+              <button
+                type="button"
+                onClick={() => delRecipe(recipe._id)}
+                className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex`}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
