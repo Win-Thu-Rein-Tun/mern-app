@@ -69,8 +69,8 @@ const Home = () => {
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
-      <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
-        <ul className="pb-16 ">
+      <div className="sm:px-16 lg:w-6/12 px-6 bg-primary text-white overflow-auto scrollbar-hide">
+        <ul className="pb-16">
           {recipes.map((recipe) => (
             <li
               key={recipe._id}
@@ -108,7 +108,7 @@ const Home = () => {
               <img
                 src={recipe.imgUrl}
                 alt={recipe.name}
-                className="object-fit rounded-xl"
+                className="rounded-xl"
               />
               <p>Cooking Time: {recipe.cookingTime} (minutes)</p>
             </li>

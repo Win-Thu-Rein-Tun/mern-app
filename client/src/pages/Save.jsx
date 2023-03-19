@@ -77,7 +77,7 @@ const Save = () => {
           No saved recipes found.
         </div>
       ) : (
-        <div className="sm:px-16 px-6 bg-primary text-white overflow-auto scrollbar-hide">
+        <div className="sm:px-16 lg:w-6/12 px-6 bg-primary text-white overflow-auto scrollbar-hide">
           <ul className="pb-16 ">
             {savedRecipes.map((recipe) => (
               <li
@@ -107,7 +107,7 @@ const Save = () => {
                 <img
                   src={recipe.imgUrl}
                   alt={recipe.name}
-                  className="object-fit rounded-xl"
+                  className="rounded-xl"
                 />
                 <p>Cooking Time: {recipe.cookingTime} (minutes)</p>
               </li>
