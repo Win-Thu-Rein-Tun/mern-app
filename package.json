@@ -1,0 +1,11 @@
+{
+  "name": "myfirstmernapp",
+  "version": "1.0.0",
+  "description": "this is my mern app",
+  "main": "./server/src/index.js",
+  "scripts": {
+    "start": "cd ./server/src && node index.js"
+  },
+  "author": "shine-d-sun",
+  "license": "ISC"
+}
