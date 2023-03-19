@@ -68,7 +68,7 @@ const Home = () => {
   const delRecipe = async (recipeID) => {
     try {
       const response = await axios.put(
-        "http://localhost:3001/recipes",
+        "http://localhost:3001/recipes/deleteRecipes",
         {
           recipeID,
         },
@@ -136,13 +136,17 @@ const Home = () => {
                 className="rounded-xl"
               />
               <p>Cooking Time: {recipe.cookingTime} (minutes)</p>
-              <button
-                type="button"
-                onClick={() => delRecipe(recipe._id)}
-                className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex`}
-              >
-                Delete
-              </button>
+              {recipe.userOwner.toString() !== userID ? (
+                <div></div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => delRecipe(recipe._id)}
+                  className={`bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded w-fit flex`}
+                >
+                  Delete
+                </button>
+              )}
             </li>
           ))}
         </ul>

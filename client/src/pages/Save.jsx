@@ -30,7 +30,7 @@ const Save = () => {
   const delSaveRecipes = async (recipeID) => {
     try {
       const response = await axios.delete(
-        "http://localhost:3001/recipes/deleteRecipes",
+        "http://localhost:3001/recipes/deleteSavedRecipes",
         {
           data: { recipeID, userID },
           headers: { authorization: cookies.access_token },
@@ -91,7 +91,7 @@ const Save = () => {
                   <button
                     type="button"
                     onClick={() => delSaveRecipes(recipe._id)}
-                    className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded justify-end flex`}
+                    className={`bg-second hover:bg-teal-600 text-white font-bold py-2 px-4 rounded flex`}
                   >
                     Delete
                   </button>

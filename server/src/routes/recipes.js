@@ -30,7 +30,10 @@ router.put("/", verifyToken, async (req, res) => {
     const user = await UserModel.findById(req.body.userID);
     user.saveRecipes.push(recipe);
     await user.save();
-    res.json({ saveRecipes: user.saveRecipes, message: "Recipe saved successfully" });
+    res.json({
+      saveRecipes: user.saveRecipes,
+      message: "Recipe saved successfully",
+    });
   } catch (err) {
     res.json(err);
   }
@@ -57,7 +60,7 @@ router.get("/saveRecipes/:userID", async (req, res) => {
   }
 });
 
-router.delete("/deleteRecipes", verifyToken, async (req, res) => {
+router.delete("/deleteSavedRecipes", verifyToken, async (req, res) => {
   try {
     const user = await UserModel.findById(req.body.userID);
     // Remove the recipe from the user's saveRecipes array
@@ -65,6 +68,15 @@ router.delete("/deleteRecipes", verifyToken, async (req, res) => {
       (id) => id.toString() !== req.body.recipeID
     );
     await user.save();
+    res.json({ message: "Recipe deleted successfully." });
+  } catch (err) {
+    res.json(err);
+  }
+});
+
+router.delete("/deleteRecipes", verifyToken, async (req, res) => {
+  try {
+    const recipe = await RecipesModel.deleteById(req.body.recipeID);
     res.json({ message: "Recipe deleted successfully." });
   } catch (err) {
     res.json(err);
