@@ -4,6 +4,7 @@
   "description": "this is my mern app",
   "main": "./server/src/index.js",
   "scripts": {
+    "build": "cd ./server && npm i && cd ../client && npm i && npm run build",
     "start": "cd ./server/src && node index.js"
   },
   "author": "shine-d-sun",
