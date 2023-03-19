@@ -65,29 +65,29 @@ const Home = () => {
     }
   };
 
-  const delRecipe = async (recipeID) => {
-    try {
-      const response = await axios.delete(
-        "http://localhost:3001/recipes/deleteRecipes",
-        {
-          recipeID,
-        },
-        { headers: { authorization: cookies.access_token } }
-      );
-      toast.success(response.data.message, {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const delRecipe = async (recipeID) => {
+  //   try {
+  //     const response = await axios.delete(
+  //       "http://localhost:3001/recipes/deleteRecipes",
+  //       {
+  //         recipeID,
+  //       },
+  //       { headers: { authorization: cookies.access_token } }
+  //     );
+  //     toast.success(response.data.message, {
+  //       position: "top-center",
+  //       autoClose: 1000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "dark",
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const isSavedRecipes = (id) => savedRecipes.includes(id);
 
@@ -135,7 +135,7 @@ const Home = () => {
                 className="rounded-xl"
               />
               <p>Cooking Time: {recipe.cookingTime} (minutes)</p>
-              {recipe.userOwner.toString() !== userID ? (
+              {/* {recipe.userOwner.toString() !== userID ? (
                 <div></div>
               ) : (
                 <button
@@ -145,7 +145,7 @@ const Home = () => {
                 >
                   Delete
                 </button>
-              )}
+              )} */}
             </li>
           ))}
         </ul>
