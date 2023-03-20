@@ -17,6 +17,8 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
 
-mongoose.connect(database);
+mongoose.connect(
+  "mongodb+srv://shinedsun:fOdxYl7Rh2HlcYus@firstmernapp.1o6psip.mongodb.net/?retryWrites=true&w=majority"
+);
 
 app.listen(port, () => console.log("server start"));
