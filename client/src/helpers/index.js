@@ -1,1 +1,1 @@
-export const url = "https://crud-simple-mernapp.onrender.com";
+export const url = import.meta.env.VITE_PORT;
