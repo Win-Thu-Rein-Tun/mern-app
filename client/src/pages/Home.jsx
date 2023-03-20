@@ -5,7 +5,6 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { url } from "../helpers";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
