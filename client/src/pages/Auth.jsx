@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { url } from "../helpers";
 
 const Auth = () => {
   return (
@@ -53,7 +54,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post(`${url}/auth/login`, {
         username,
         password,
       });
@@ -110,7 +111,7 @@ const Register = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/auth/register", {
+      const response = await axios.post(`${url}/auth/register`, {
         username,
         password,
       });
