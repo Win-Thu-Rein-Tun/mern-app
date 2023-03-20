@@ -8,8 +8,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const DATABASE = process.env.DATABASE;
-const PORT = process.env.PORT;
+const database = process.env.DATABASE;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -17,6 +17,6 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
 
-mongoose.connect(DATABASE);
+mongoose.connect(database);
 
-app.listen(PORT, () => console.log("server start"));
+app.listen(port, () => console.log("server start"));
