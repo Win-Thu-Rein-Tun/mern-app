@@ -4,6 +4,7 @@ import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { url } from "../helpers";
 
 const Create = () => {
   const userID = useGetUserID();
@@ -38,7 +39,7 @@ const Create = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/recipes", recipes, {
+      await axios.post(`${url}/recipes`, recipes, {
         headers: { authorization: cookies.access_token },
       });
       navigation("/");

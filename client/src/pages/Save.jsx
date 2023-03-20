@@ -5,6 +5,7 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { url } from "../helpers";
 
 const Save = () => {
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -16,7 +17,7 @@ const Save = () => {
     const fetchSaveRecipes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/recipes/saveRecipes/${userID}`
+          `${url}/recipes/saveRecipes/${userID}`
         );
         setSavedRecipes(response.data.saveRecipes);
       } catch (error) {
@@ -29,13 +30,10 @@ const Save = () => {
 
   const delSaveRecipes = async (recipeID) => {
     try {
-      const response = await axios.delete(
-        "http://localhost:3000/recipes/deleteSavedRecipes",
-        {
-          data: { recipeID, userID },
-          headers: { authorization: cookies.access_token },
-        }
-      );
+      const response = await axios.delete(`${url}/recipes/deleteSavedRecipes`, {
+        data: { recipeID, userID },
+        headers: { authorization: cookies.access_token },
+      });
       toast.success(response.data.message, {
         position: "top-center",
         autoClose: 1000,
