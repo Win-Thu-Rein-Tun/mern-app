@@ -5,6 +5,7 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { url } from "../helpers";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -17,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/recipes");
+        const response = await axios.get(`${url}/recipes`);
         setRecipes(response.data);
       } catch (error) {
         console.log(error);
@@ -27,7 +28,7 @@ const Home = () => {
     const fetchSaveRecipes = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/recipes/saveRecipes/ids/${userID}`
+          `${url}/recipes/saveRecipes/ids/${userID}`
         );
         setSavedRecipes(response.data.saveRecipes);
       } catch (error) {
@@ -42,7 +43,7 @@ const Home = () => {
   const saveRecipes = async (recipeID) => {
     try {
       const response = await axios.put(
-        "http://localhost:3000/recipes",
+        `${url}/recipes`,
         {
           recipeID,
           userID,
