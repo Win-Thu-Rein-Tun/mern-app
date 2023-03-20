@@ -74,14 +74,14 @@ router.delete("/deleteSavedRecipes", verifyToken, async (req, res) => {
   }
 });
 
-router.delete("/deleteRecipes", verifyToken, async (req, res) => {
-  try {
-    const recipe = await RecipesModel.deleteById(req.body.recipeID);
-    res.json({ message: "Recipe deleted successfully." });
-  } catch (err) {
-    res.json(err);
-  }
-});
+// router.delete("/deleteRecipes", verifyToken, async (req, res) => {
+//   try {
+//     const recipe = await RecipesModel.deleteById(req.body.recipeID);
+//     res.json({ message: "Recipe deleted successfully." });
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
 
 // // router.delete("/deleteRecipes", async (req, res) => {
 // //   try {
