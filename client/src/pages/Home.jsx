@@ -18,7 +18,9 @@ const Home = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await axios.get(`${url}/recipes`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_PORT}/recipes`
+        );
         setRecipes(response.data);
       } catch (error) {
         console.log(error);
@@ -28,7 +30,7 @@ const Home = () => {
     const fetchSaveRecipes = async () => {
       try {
         const response = await axios.get(
-          `${url}/recipes/saveRecipes/ids/${userID}`
+          `${import.meta.env.VITE_PORT}/recipes/saveRecipes/ids/${userID}`
         );
         setSavedRecipes(response.data.saveRecipes);
       } catch (error) {
@@ -43,7 +45,7 @@ const Home = () => {
   const saveRecipes = async (recipeID) => {
     try {
       const response = await axios.put(
-        `${url}/recipes`,
+        `${import.meta.env.VITE_PORT}/recipes`,
         {
           recipeID,
           userID,
