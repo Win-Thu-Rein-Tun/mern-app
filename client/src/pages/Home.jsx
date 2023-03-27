@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [cookies, setCookies] = useCookies(["access_token"]);
 
@@ -21,6 +22,7 @@ const Home = () => {
           `${import.meta.env.VITE_PORT}/recipes`
         );
         setRecipes(response.data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -92,6 +94,10 @@ const Home = () => {
   // };
 
   const isSavedRecipes = (id) => savedRecipes.includes(id);
+
+  if (loading) {
+    return <div className="text-white">Loading...</div>;
+  }
 
   return (
     <div className="bg-secondary h-screen flex justify-center">
