@@ -5,11 +5,12 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { PacmanLoader } from "react-spinners";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [cookies, setCookies] = useCookies(["access_token"]);
 
@@ -18,6 +19,7 @@ const Home = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           `${import.meta.env.VITE_PORT}/recipes`
         );
@@ -96,7 +98,11 @@ const Home = () => {
   const isSavedRecipes = (id) => savedRecipes.includes(id);
 
   if (loading) {
-    return <div className="text-white">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-full">
+        <PacmanLoader color="#14FFEC" size={40} />
+      </div>
+    );
   }
 
   return (
