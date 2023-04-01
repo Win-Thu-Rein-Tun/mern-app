@@ -99,7 +99,7 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full">
+      <div className="flex justify-center items-center bg-secondary h-screen">
         <PacmanLoader color="#14FFEC" size={40} />
       </div>
     );
